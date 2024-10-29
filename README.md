@@ -101,7 +101,7 @@ all the files in the project directory as if they were part of the
 project, the application code must first be moved to a subdirectory
 (with the exception of the .sln file).
 
-New subdirectory should use the same name as the solution file,
+The new subdirectory should use the same name as the solution file,
 without the .sln extension.  After creating it **first** move all the
 relevant files and directories (source code, project file(s), the
 `Properties` and `Resources` directories etc), using the `git mv`
