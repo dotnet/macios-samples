@@ -1,6 +1,6 @@
 # .NET for iOS, tvOS, macOS and Mac Catalyst samples
 
-This repository contains .NET for iOS, tvOS, macOS and Mac Catalyst samples, showing usage of various
+This repository contains .NET samples targeting iOS, tvOS, macOS and Mac Catalyst. The samples demonstrate usage of various
 Apple API wrappers from C#. Visit the [Sample Gallery](https://docs.microsoft.com/samples/browse/?term=dotnet-macios)
 to download individual samples.
 
@@ -56,7 +56,7 @@ Because the sample galleries are powered by the github sample repos, each sample
     rest of README goes here, including screenshot images and requirements/instructions to get it running
     ```
 
-    > NOTE: This must be valid YAML, so some characters in the name or description will require the entire string to be surrounded by " or ' quotes.
+    > NOTE: This must be valid YAML, so some characters in the name or description will require the entire string to be surrounded by " or ' quotes (to be safe, just quote all name and description values).
 
 - **Buildable solution and .csproj file** - the project _must_ build and have the appropriate project scaffolding (solution + .csproj files).
 
@@ -86,7 +86,7 @@ Compare a `dotnet new ios` template named the same as the existing project.
 
 5. Fix all namespace declarations to use C# 10 file-scoped namespaces.
 
-6. Build. Fix any warnings related to nullable reference types (`Nullable=enable`).
+6. Build using `dotnet build`. Fix any warnings related to nullable reference types (`Nullable=enable`).
 
 7. Run the app and ensure the sample still works.
 
@@ -135,6 +135,10 @@ this repository):
 ## License
 
 .NET (including the macios-samples repo) is licensed under the [MIT license](./LICENSE).
+
+You can add your own copyright header, so long as you keep all pre-existing
+copyright notices intact, subject to review by Microsoft. Otherwise code
+without a copyright notice will licensed under the MIT license.
 
 # Contributing
 
