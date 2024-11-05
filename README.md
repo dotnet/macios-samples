@@ -136,9 +136,7 @@ this repository):
 
 .NET (including the macios-samples repo) is licensed under the [MIT license](./LICENSE).
 
-You can add your own copyright header, so long as you keep all pre-existing
-copyright notices intact, subject to review by Microsoft. Otherwise code
-without a copyright notice will licensed under the MIT license.
+You may add their own copyright header, e.g. `// Copyright (c) A. N. Other.`, to your original contributions, as well as to files you modify and contribute back to the Microsoft OSS project, so long as you keep all pre-existing copyright notices intact in the files you have modified. Original contributions will be licensed using the [MIT license](./LICENSE) and should include the license header, e.g. `// Licensed under the MIT License.`.
 
 ## Trademarks
 
