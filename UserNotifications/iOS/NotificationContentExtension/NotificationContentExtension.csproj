@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-ios</TargetFramework>
+    <OutputType>Library</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+    <ApplicationId>com.rolfkvinge.usernotifications.notificationcontentextension</ApplicationId>
+    <IsAppExtension>True</IsAppExtension>
+    <CodesignProvision>User Notifications Content Extension Profile</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <CustomEntitlements Include="aps-environment" Type="String" Value="development" Condition="'$(Configuration)' != 'Release'" />
+    <CustomEntitlements Include="aps-environment" Type="String" Value="production" Condition="'$(Configuration)' == 'Release'" />
+  </ItemGroup>
+</Project>
