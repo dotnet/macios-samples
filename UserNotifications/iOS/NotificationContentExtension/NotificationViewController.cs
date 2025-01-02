@@ -1,43 +1,45 @@
 ﻿using System;
+
 using Foundation;
+using ObjCRuntime;
 using UIKit;
 using UserNotifications;
 using UserNotificationsUI;
 
-namespace NotificationTest.NotificationContent
+namespace NotificationContentExtension
 {
 	[Register ("NotificationViewController")]
 	public class NotificationViewController : UIViewController, IUNNotificationContentExtension
 	{
 		const int LabelHeight = 88;
-
 		UILabel? notificationLabel;
 
-		protected NotificationViewController (IntPtr handle) : base (handle)
+		protected NotificationViewController (NativeHandle handle) : base (handle)
 		{
 			// Note: this .ctor should not contain any initialization logic.
+			// it only exists so that the OS can instantiate an instance of this class.
 		}
 
-		public override void ViewDidLoad()
+		public override void ViewDidLoad ()
 		{
-			base.ViewDidLoad();
+			base.ViewDidLoad ();
 
 			Console.WriteLine ($"UserNotifications.NotificationContentExtension.NotificationViewController.ViewDidLoad ()");
 
 			View.BackgroundColor = UIColor.Clear;
 
-			notificationLabel = new UILabel()
+			notificationLabel = new UILabel ()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				Lines = 0,
-				TextAlignment = UITextAlignment.Center
+				TextAlignment = UITextAlignment.Center,
 			};
-			View.AddSubview(notificationLabel);
+			View.AddSubview (notificationLabel);
 
-			notificationLabel.TopAnchor.ConstraintEqualTo(View.TopAnchor).Active = true;
-			notificationLabel.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor).Active = true;
-			notificationLabel.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor).Active = true;
-			notificationLabel.HeightAnchor.ConstraintEqualTo(LabelHeight).Active = true;
+			notificationLabel.TopAnchor.ConstraintEqualTo (View.TopAnchor).Active = true;
+			notificationLabel.LeadingAnchor.ConstraintEqualTo (View.LeadingAnchor).Active = true;
+			notificationLabel.TrailingAnchor.ConstraintEqualTo (View.TrailingAnchor).Active = true;
+			notificationLabel.HeightAnchor.ConstraintEqualTo (LabelHeight).Active = true;
 		}
 
 		void IUNNotificationContentExtension.DidReceiveNotification(UNNotification notification)
