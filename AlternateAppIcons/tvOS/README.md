@@ -11,6 +11,6 @@ urlFragment: alternateappicons-tvos
 
 # Alternate App Icon in tvOS
 
-Alternate App Icon is a sample app that accompanies the article [Alternate App Icons in .NET for iOS and tvOS](#todo-link).
+Alternate App Icon is a sample app that accompanies the article [Alternate App Icons in .NET for iOS and tvOS](https://learn.microsoft.com/dotnet/ios/app-fundamentals/images-icons/alternate-app-icons).
 
 It demonstrates how to change the app icon at runtime.
