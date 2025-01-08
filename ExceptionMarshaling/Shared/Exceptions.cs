@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 
 using Foundation;
@@ -6,22 +6,19 @@ using ObjCRuntime;
 
 namespace ExceptionMarshaling;
 
-public enum ThreadMode
-{
+public enum ThreadMode {
 	MainThread,
 	BackgroundThread,
 	ThreadPool,
 }
 
-public static class Exceptions
-{
+public static class Exceptions {
 	public static MarshalManagedExceptionMode? ManagedExceptionMode;
 	public static MarshalObjectiveCExceptionMode? ObjectiveCExceptionMode;
 
 	static Exceptions ()
 	{
-		Runtime.MarshalManagedException += (object sender, MarshalManagedExceptionEventArgs args) =>
-		{
+		Runtime.MarshalManagedException += (object sender, MarshalManagedExceptionEventArgs args) => {
 			Console.WriteLine ("Marshalling managed exception");
 			Console.WriteLine ("    Exception: {0}", args.Exception);
 			Console.WriteLine ("    Mode: {0}", args.ExceptionMode);
@@ -29,8 +26,7 @@ public static class Exceptions
 			if (ManagedExceptionMode.HasValue)
 				args.ExceptionMode = ManagedExceptionMode.Value;
 		};
-		Runtime.MarshalObjectiveCException += (object sender, MarshalObjectiveCExceptionEventArgs args) =>
-		{
+		Runtime.MarshalObjectiveCException += (object sender, MarshalObjectiveCExceptionEventArgs args) => {
 			Console.WriteLine ("Marshalling Objective-C exception");
 			Console.WriteLine ("    Exception: {0}", args.Exception);
 			Console.WriteLine ("    Mode: {0}", args.ExceptionMode);
@@ -81,7 +77,7 @@ public static class Exceptions
 
 	public static void ThrowManagedException (ThreadMode mode)
 	{
-			switch (mode) {
+		switch (mode) {
 		case ThreadMode.MainThread:
 			Exceptions.ThrowManagedExceptionThroughNativeCode ();
 			break;
@@ -99,8 +95,7 @@ public static class Exceptions
 	}
 }
 
-public class ExceptionalObject : NSObject
-{
+public class ExceptionalObject : NSObject {
 	[Export ("throwManagedException")]
 	void ThrowManagedException ()
 	{

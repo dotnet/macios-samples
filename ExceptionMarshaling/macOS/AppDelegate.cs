@@ -1,11 +1,10 @@
-﻿using CoreGraphics;
+using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
 
 namespace ExceptionMarshaling;
 
-public class AppDelegate : NSApplicationDelegate
-{
+public class AppDelegate : NSApplicationDelegate {
 	NSWindow? window;
 
 	public override void DidFinishLaunching (NSNotification notification)
@@ -131,7 +130,7 @@ public class AppDelegate : NSApplicationDelegate
 		};
 		throwManagedException.Activated += (sender, e) => {
 			setModes ();
-			Exceptions.ThrowManagedException ((ThreadMode)(int)threadManagedMatrix.SelectedRow);
+			Exceptions.ThrowManagedException ((ThreadMode) (int) threadManagedMatrix.SelectedRow);
 		};
 
 	}

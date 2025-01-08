@@ -1,9 +1,8 @@
-﻿using ObjCRuntime;
+using ObjCRuntime;
 
 namespace ExceptionMarshaling;
 
-public class AppDelegate : UIApplicationDelegate
-{
+public class AppDelegate : UIApplicationDelegate {
 	UIWindow? window;
 	UINavigationController? nav;
 	MyTableViewController? dvc;
@@ -39,7 +38,7 @@ public class AppDelegate : UIApplicationDelegate
 	}
 
 	class RootTableViewController : MyTableViewController {
-		static string[] sections = new [] {
+		static string [] sections = new [] {
 			"Throw Objective-C exception",
 			"Throw managed exception",
 		};
@@ -102,14 +101,14 @@ public class AppDelegate : UIApplicationDelegate
 		bool isManagedMode; // if not, objective-c mode
 		ThreadMode threadMode;
 
-		static string[] threadModes = new []
+		static string [] threadModes = new []
 		{
 			"Main thread",
 			"Background thread",
 			"Threadpool thread",
 		};
 
-		static string[] objectiveCExceptionModes = new [] {
+		static string [] objectiveCExceptionModes = new [] {
 			"None",
 			"Default",
 			"Unwind managed code",
@@ -118,7 +117,7 @@ public class AppDelegate : UIApplicationDelegate
 			"Disable",
 		};
 
-		static string[] managedExceptionModes = new [] {
+		static string [] managedExceptionModes = new [] {
 			"None",
 			"Default",
 			"Unwind native code",
@@ -283,14 +282,14 @@ public class AppDelegate : UIApplicationDelegate
 
 	class SelectItemTableViewController : UITableViewController, IUITableViewDelegate, IUITableViewDataSource {
 		UITableView? tableView;
-		string[] items;
+		string [] items;
 
 		public int SelectedIndex = 0;
 
 		public event SelectedIndexChangedHandler? SelectedIndexChanged;
 		public delegate void SelectedIndexChangedHandler (SelectItemTableViewController obj, int selectedIndex);
 
-		public SelectItemTableViewController (string[] items)
+		public SelectItemTableViewController (string [] items)
 			: base (UITableViewStyle.Grouped)
 		{
 			this.items = items;

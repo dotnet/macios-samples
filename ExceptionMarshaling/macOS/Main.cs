@@ -1,7 +1,6 @@
-﻿namespace ExceptionMarshaling;
+namespace ExceptionMarshaling;
 
-static class MainClass
-{
+static class MainClass {
 #pragma warning disable 414 // private field 'app_delegate' is assigned but its value is never used
 	static AppDelegate? app_delegate;
 #pragma warning restore 414
