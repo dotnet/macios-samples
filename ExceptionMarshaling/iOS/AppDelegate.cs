@@ -327,7 +327,7 @@ public class AppDelegate : UIApplicationDelegate
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
 			Console.WriteLine ($"SelectItemTableViewController.TitleForFooter {section}");
-			return "";
+			return string.Empty;
 		}
 
 		static NSString CellKey = (NSString) "selectItemKey";
