@@ -321,7 +321,7 @@ public class AppDelegate : UIApplicationDelegate
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
 			Console.WriteLine ($"SelectItemTableViewController.TitleForHeader {section}");
-			return "";
+			return string.Empty;
 		}
 
 		public override string TitleForFooter (UITableView tableView, nint section)
