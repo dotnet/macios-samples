@@ -319,10 +319,8 @@ public class AppDelegate : UIApplicationDelegate {
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell (CellKey);
-			if (cell is null) {
+			if (cell is null)
 				cell = new UITableViewCell (UITableViewCellStyle.Default, CellKey);
-				// cell.SelectionStyle = UITableViewCellSelectionStyle.Blue;
-			}
 
 			var selected = SelectedIndex == indexPath.Row;
 			var text = items [indexPath.Row];
