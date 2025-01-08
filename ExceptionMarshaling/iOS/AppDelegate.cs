@@ -48,34 +48,28 @@ public class AppDelegate : UIApplicationDelegate {
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			Console.WriteLine ($"RootTableViewController.RowsInSection {section}: 1");
 			return 1;
 		}
 
 		public override nint NumberOfSections (UITableView tableView)
 		{
-			Console.WriteLine ($"RootTableViewController.NumberOfSections: {sections.Length}");
 			return sections.Length;
 		}
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			Console.WriteLine ($"RootTableViewController.TitleForHeader {section}");
-			return "";
+			return string.Empty;
 		}
 
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			Console.WriteLine ($"RootTableViewController.TitleForFooter {section}");
-			return "";
+			return string.Empty;
 		}
 
 		static NSString CellKey = (NSString) "rootCellKey";
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			Console.WriteLine ($"RootTableViewController.GetCell: {indexPath}");
-
 			var cell = tableView.DequeueReusableCell (CellKey);
 			if (cell is null) {
 				cell = new UITableViewCell (UITableViewCellStyle.Default, CellKey);
@@ -91,7 +85,6 @@ public class AppDelegate : UIApplicationDelegate {
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			Console.WriteLine ($"RootTableViewController.RowSelected {indexPath}");
 			tableView.DeselectRow (indexPath, false);
 
 			var controller = new ModeTableViewController (indexPath.Section == 1);
@@ -164,19 +157,16 @@ public class AppDelegate : UIApplicationDelegate {
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			Console.WriteLine ($"ModeTableViewController.RowsInSection {section}: 1");
 			return 1;
 		}
 
 		public override nint NumberOfSections (UITableView tableView)
 		{
-			Console.WriteLine ($"ModeTableViewController.NumberOfSections: 3");
 			return 3;
 		}
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			Console.WriteLine ($"ModeTableViewController.TitleForHeader {section}");
 			switch (section) {
 			case 0:
 				return isManagedMode ? "Marshal managed exception mode" : "Marshal Objective-C exception mode";
@@ -191,8 +181,7 @@ public class AppDelegate : UIApplicationDelegate {
 
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			Console.WriteLine ($"ModeTableViewController.TitleForFooter {section}");
-			return "";
+			return string.Empty;
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -205,8 +194,6 @@ public class AppDelegate : UIApplicationDelegate {
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			Console.WriteLine ($"ModeTableViewController.GetCell: {indexPath}");
-
 			var cell = tableView.DequeueReusableCell (CellKey);
 			if (cell is null) {
 				cell = new UITableViewCell (UITableViewCellStyle.Default, CellKey);
@@ -242,7 +229,6 @@ public class AppDelegate : UIApplicationDelegate {
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			Console.WriteLine ($"RowSelected {indexPath}");
 			tableView.DeselectRow (indexPath, false);
 
 			switch (indexPath.Section) {
@@ -310,25 +296,21 @@ public class AppDelegate : UIApplicationDelegate {
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			Console.WriteLine ($"SelectItemTableViewController.RowsInSection {section}: {items.Length}");
 			return items.Length;
 		}
 
 		public override nint NumberOfSections (UITableView tableView)
 		{
-			Console.WriteLine ("SelectItemTableViewController.NumberOfSections: 1");
 			return 1;
 		}
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			Console.WriteLine ($"SelectItemTableViewController.TitleForHeader {section}");
 			return string.Empty;
 		}
 
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			Console.WriteLine ($"SelectItemTableViewController.TitleForFooter {section}");
 			return string.Empty;
 		}
 
@@ -336,8 +318,6 @@ public class AppDelegate : UIApplicationDelegate {
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			Console.WriteLine ($"SelectItemTableViewController.GetCell: {indexPath}");
-
 			var cell = tableView.DequeueReusableCell (CellKey);
 			if (cell is null) {
 				cell = new UITableViewCell (UITableViewCellStyle.Default, CellKey);
@@ -357,8 +337,6 @@ public class AppDelegate : UIApplicationDelegate {
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			Console.WriteLine ($"SelectItemTableViewController.RowSelected: {indexPath}");
-
 			var newIndex = indexPath.Row;
 			if (newIndex != SelectedIndex) {
 				SelectedIndex = newIndex;
