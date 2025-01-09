@@ -1,21 +1,19 @@
-﻿using System;
+using System;
 
 using Foundation;
 using ObjCRuntime;
 using UIKit;
 using UserNotifications;
 
-namespace NotificationServiceExtension
-{
+namespace NotificationServiceExtension {
 	[Register ("NotificationService")] // this must match the value of the 'NSExtensionPrincipalClass' key in the extension's Info.plist
-	public class NotificationService : UNNotificationServiceExtension
-	{
+	public class NotificationService : UNNotificationServiceExtension {
 		protected NotificationService (NativeHandle handle) : base (handle)
 		{
 			// Note: this .ctor should not contain any initialization logic.
 		}
 
-		public override void DidReceiveNotificationRequest(UNNotificationRequest request, Action<UNNotificationContent> contentHandler)
+		public override void DidReceiveNotificationRequest (UNNotificationRequest request, Action<UNNotificationContent> contentHandler)
 		{
 			Console.WriteLine ($"UserNotifications.NotificationServiceExtension.DidReceiveNotificationRequest ({request})");
 
