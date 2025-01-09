@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Foundation;
 using ObjCRuntime;
@@ -6,11 +6,9 @@ using UIKit;
 using UserNotifications;
 using UserNotificationsUI;
 
-namespace NotificationContentExtension
-{
+namespace NotificationContentExtension {
 	[Register ("NotificationViewController")]
-	public class NotificationViewController : UIViewController, IUNNotificationContentExtension
-	{
+	public class NotificationViewController : UIViewController, IUNNotificationContentExtension {
 		const int LabelHeight = 88;
 		UILabel? notificationLabel;
 
@@ -28,8 +26,7 @@ namespace NotificationContentExtension
 
 			View.BackgroundColor = UIColor.Clear;
 
-			notificationLabel = new UILabel ()
-			{
+			notificationLabel = new UILabel () {
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				Lines = 0,
 				TextAlignment = UITextAlignment.Center,
@@ -42,7 +39,7 @@ namespace NotificationContentExtension
 			notificationLabel.HeightAnchor.ConstraintEqualTo (LabelHeight).Active = true;
 		}
 
-		void IUNNotificationContentExtension.DidReceiveNotification(UNNotification notification)
+		void IUNNotificationContentExtension.DidReceiveNotification (UNNotification notification)
 		{
 			Console.WriteLine ($"UserNotifications.NotificationContentExtension.NotificationViewController.DidReceiveNotification ({notification})");
 
