@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <ApplicationTitle>Exception Marshaling</ApplicationTitle>
+    <ApplicationId>com.xamarin.exceptionmarshaling</ApplicationId>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NoSymbolStrip>true</NoSymbolStrip> <!-- this produces better stack traces when the app crashes -->
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)/Shared/*.cs" />
+  </ItemGroup>
+</Project>
