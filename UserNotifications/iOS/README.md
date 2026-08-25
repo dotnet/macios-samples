@@ -11,7 +11,7 @@ urlFragment: usernotifications-ios
 
 # User Notifications in iOS
 
-User Notifications is a sample app that accompanies the article [User notifications](https://learn.microsoft.com/en-us/dotnet/ios/app-fundamentals/user-notifications/user-notifications).
+User Notifications is a sample app that accompanies the article [User notifications](https://learn.microsoft.com/en-us/dotnet/ios/app-fundamentals/user-notifications).
 
 It demonstrates how to delivery and handling of user notifications at runtime.
 
