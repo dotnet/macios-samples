@@ -1,0 +1,10 @@
+<!-- Copyright (c) Microsoft Corporation. Licensed under the MIT License. -->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-maccatalyst</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ApplicationId>com.microsoft.samples.nsurlsessionhandler.maccatalyst</ApplicationId>
+    <ApplicationTitle>NSUrlSessionHandler</ApplicationTitle>
+    <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,15 @@
+<!-- Copyright (c) Microsoft Corporation. Licensed under the MIT License. -->
+<Project>
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>HandlerSample</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'Server'">
+    <Compile Include="../Shared/*.cs" />
+    <BundleResource Include="../Development/Public/*" Link="%(Filename)%(Extension)" />
+  </ItemGroup>
+  <Target Name="RequireDevelopmentFixtures" BeforeTargets="PrepareForBuild" Condition="'$(MSBuildProjectName)' != 'Server'">
+    <Error Condition="!Exists('../Development/Public/settings.json')" Text="Generate development fixtures first: from NSUrlSessionHandler, run dotnet run --project Server -- --setup" />
+  </Target>
+</Project>
