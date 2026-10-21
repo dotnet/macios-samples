@@ -381,10 +381,9 @@ What happened here?
 3. Enter `Marshal managed exception mode` and select `Unwind native code`.
 3. Go back and tap `Throw`.
 
-Since Objective-C exceptions are automatically intercepted in Debug
-configurations, the `MarshalObjectiveCException` event will be raised, and
-since the target mode is modified in the event handler to marshal the
-Objective-C exception to a managed exception, the app doesn't crash anymore:
+The `MarshalManagedException` event is raised, but CoreCLR does not support
+unwinding native frames for a managed exception. Selecting `Unwind native
+code` therefore aborts the process:
 
 ```
 Marshalling managed exception

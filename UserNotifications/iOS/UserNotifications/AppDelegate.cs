@@ -4,12 +4,7 @@ namespace NotificationTest;
 
 [Register ("AppDelegate")]
 public class AppDelegate : UIApplicationDelegate, IUNUserNotificationCenterDelegate {
-	public override UIWindow? Window {
-		get;
-		set;
-	}
-
-	public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
+	public override bool FinishedLaunching (UIApplication application, NSDictionary? launchOptions)
 	{
 		UNUserNotificationCenter.Current.Delegate = this;
 
@@ -30,9 +25,6 @@ public class AppDelegate : UIApplicationDelegate, IUNUserNotificationCenterDeleg
 		});
 		UIApplication.SharedApplication.RegisterForRemoteNotifications ();
 
-		Window = new UIWindow (UIScreen.MainScreen.Bounds);
-		Window.RootViewController = new RootViewController ();
-		Window.MakeKeyAndVisible ();
 		return true;
 	}
 

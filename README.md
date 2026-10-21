@@ -6,6 +6,19 @@ to download individual samples.
 
 See the [.NET MAUI Installation docs](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation) for setup instructions.
 
+## Prerequisites
+
+The samples target .NET 10. Install the .NET 10 SDK, the workload for the
+sample's platform (`ios`, `tvos`, `macos`, or `maccatalyst`), and the Xcode
+version required by that workload. See the [.NET for iOS, tvOS, macOS and
+Mac Catalyst release notes](https://github.com/dotnet/macios/wiki/Release-notes)
+for compatible Xcode versions.
+
+AlternateAppIcons requires iOS/tvOS 15.0 or later, and UserNotifications
+requires iOS 15.0 or later.
+ExceptionMarshaling requires iOS 15.0 or macOS 14.0 or later. ComposerIcons
+requires version 26.0 or later of its target platform.
+
 ## Galleries
 
 We love samples! Application samples show off our platform and provide a great way for people to learn our stuff. And we even promote them as a first-class feature of the docs site. You can find the sample galleries here:
