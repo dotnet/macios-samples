@@ -21,6 +21,21 @@ extension project, and then updating the bundle identifier (the
 `ApplicationId` in the project file) for each project according to the chosen
 app identifier.
 
+Update each project's `CodesignProvision` value to match its provisioning
+profile as well. To build and ad-hoc sign the host and both extensions for
+an Apple Silicon simulator without those device profiles, run from this
+directory:
+
+```sh
+dotnet build UserNotifications/UserNotifications.csproj -r iossimulator-arm64 \
+  -p:CodesignProvision= -p:CodesignKey=- -p:CodesignRequireProvisioningProfile=false
+```
+
+This checks simulator compilation and packaging, not APNs delivery or
+extension activation. To verify the service extension's `[modified]` title
+and the content extension's expanded interface, use the payloads below on a
+provisioned device.
+
 See the [User Notifications](https://learn.microsoft.com/en-us/dotnet/ios/app-fundamentals/user-notifications/user-notifications) article for more information.
 
 ## Local notifications

@@ -1,54 +1,131 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 namespace AlternateAppIcons;
 
+using UserNotifications;
+
 [Register ("SceneDelegate")]
-public class SceneDelegate : UIResponder, IUIWindowSceneDelegate {
+public class SceneDelegate : UIWindowSceneDelegate {
+	UIColor blue = UIColor.FromRGB (81, 43, 212);
+	UIColor green = UIColor.FromRGB (119, 187, 65);
+	UILabel? label;
+	int badgeCount;
 
-	[Export ("window")]
-	public UIWindow? Window { get; set; }
-
-	[Export ("scene:willConnectToSession:options:")]
-	public void WillConnect (UIScene scene, UISceneSession session, UISceneConnectionOptions connectionOptions)
-	{
-		// Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-		// If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-		// This delegate does not imply the connecting scene or session are new (see UIApplicationDelegate `GetConfiguration` instead).
+	public override UIWindow? Window {
+		get;
+		set;
 	}
 
-	[Export ("sceneDidDisconnect:")]
-	public void DidDisconnect (UIScene scene)
+	public override void WillConnect (UIScene scene, UISceneSession session, UISceneConnectionOptions connectionOptions)
 	{
-		// Called as the scene is being released by the system.
-		// This occurs shortly after the scene enters the background, or when its session is discarded.
-		// Release any resources associated with this scene that can be re-created the next time the scene connects.
-		// The scene may re-connect later, as its session was not neccessarily discarded (see UIApplicationDelegate `DidDiscardSceneSessions` instead).
+		if (scene is not UIWindowScene windowScene)
+			throw new InvalidOperationException ("Expected a window scene.");
+
+		Window = new UIWindow (windowScene);
+
+		// create a UIViewController with a single UILabel
+		var vc = new UIViewController ();
+
+		var stackView = new UIStackView (Window.Frame);
+		stackView.Axis = UILayoutConstraintAxis.Vertical;
+		stackView.Distribution = UIStackViewDistribution.FillEqually;
+
+		label = new UILabel () {
+			TextColor = blue,
+			TextAlignment = UITextAlignment.Center,
+			Text = "Hello, App Icon Switcher!",
+			AutoresizingMask = UIViewAutoresizing.All,
+		};
+		stackView.AddArrangedSubview (label);
+
+		var primaryIconButton = UIButton.FromType (UIButtonType.RoundedRect);
+		primaryIconButton.SetTitle ("Switch to primary icon", UIControlState.Normal);
+		primaryIconButton.SetTitleColor (blue, UIControlState.Normal);
+		primaryIconButton.TouchUpInside += async (sender, args) => await UsePrimaryIconAsync ();
+		primaryIconButton.Enabled = UIApplication.SharedApplication.SupportsAlternateIcons;
+		stackView.AddArrangedSubview (primaryIconButton);
+
+		var alternateIconButton = UIButton.FromType (UIButtonType.RoundedRect);
+		alternateIconButton.SetTitle ("Switch to alternate icon", UIControlState.Normal);
+		alternateIconButton.SetTitleColor (green, UIControlState.Normal);
+		alternateIconButton.TouchUpInside += async (sender, args) => await UseAlternateIconAsync ();
+		alternateIconButton.Enabled = UIApplication.SharedApplication.SupportsAlternateIcons;
+		stackView.AddArrangedSubview (alternateIconButton);
+
+		var incrementBadgeCount = UIButton.FromType (UIButtonType.RoundedRect);
+		incrementBadgeCount.SetTitle ("Increment badge count", UIControlState.Normal);
+		incrementBadgeCount.PrimaryActionTriggered += (sender, args) => SetBadgeCount (badgeCount + 1);
+		incrementBadgeCount.Enabled = UIApplication.SharedApplication.SupportsAlternateIcons;
+		stackView.AddArrangedSubview (incrementBadgeCount);
+
+		var decrementBadgeCount = UIButton.FromType (UIButtonType.RoundedRect);
+		decrementBadgeCount.SetTitle ("Decrement badge count", UIControlState.Normal);
+		decrementBadgeCount.PrimaryActionTriggered += (sender, args) => SetBadgeCount (badgeCount - 1);
+		decrementBadgeCount.Enabled = UIApplication.SharedApplication.SupportsAlternateIcons;
+		stackView.AddArrangedSubview (decrementBadgeCount);
+
+		vc.View!.AddSubview (stackView);
+		Window.RootViewController = vc;
+
+		// make the window visible
+		Window.MakeKeyAndVisible ();
 	}
 
-	[Export ("sceneDidBecomeActive:")]
-	public void DidBecomeActive (UIScene scene)
+	void SetBadgeCount (int count)
 	{
-		// Called when the scene has moved from an inactive state to an active state.
-		// Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+		if (count >= 0) {
+			if (OperatingSystem.IsIOSVersionAtLeast (16, 0)) {
+				UNUserNotificationCenter.Current.RequestAuthorization (UNAuthorizationOptions.Badge, (bool granted, NSError error) => {
+					if (granted) {
+						UNUserNotificationCenter.Current.SetBadgeCount (count, (error) => {
+							InvokeOnMainThread (() => {
+								if (error is null) {
+									label!.Text = $"Updated badge count to {count}";
+									badgeCount = count;
+								} else {
+									label!.Text = $"Updated to update badge count: {error}";
+								}
+							});
+						});
+					} else {
+						InvokeOnMainThread (() => {
+							label!.Text = $"Denied permission to the badge: {error}";
+						});
+					}
+				});
+			} else {
+				UIApplication.SharedApplication.ApplicationIconBadgeNumber = count;
+				badgeCount = count;
+			}
+		} else {
+			label!.Text = $"Can't decrement badge count to below 0.";
+		}
 	}
 
-	[Export ("sceneWillResignActive:")]
-	public void WillResignActive (UIScene scene)
+	async Task UsePrimaryIconAsync ()
 	{
-		// Called when the scene will move from an active state to an inactive state.
-		// This may occur due to temporary interruptions (ex. an incoming phone call).
+		label!.Text = $"Switching to primary icon...";
+		try {
+			await UIApplication.SharedApplication.SetAlternateIconNameAsync (null);
+			label!.Text = "Using primary icon";
+			label!.TextColor = blue;
+		} catch (Exception e) {
+			label!.Text = $"Failed to switch to primary icon: {e.Message}";
+			label!.TextColor = UIColor.Red;
+		}
 	}
 
-	[Export ("sceneWillEnterForeground:")]
-	public void WillEnterForeground (UIScene scene)
+	async Task UseAlternateIconAsync ()
 	{
-		// Called as the scene transitions from the background to the foreground.
-		// Use this method to undo the changes made on entering the background.
-	}
-
-	[Export ("sceneDidEnterBackground:")]
-	public void DidEnterBackground (UIScene scene)
-	{
-		// Called as the scene transitions from the foreground to the background.
-		// Use this method to save data, release shared resources, and store enough scene-specific state information
-		// to restore the scene back to its current state.
+		label!.Text = $"Switching to alternate icon...";
+		try {
+			await UIApplication.SharedApplication.SetAlternateIconNameAsync ("AlternateAppIcons");
+			label!.Text = $"Using alternate icon {UIApplication.SharedApplication.AlternateIconName}";
+			label!.TextColor = green;
+		} catch (Exception e) {
+			label!.Text = $"Failed to switch to alternate icon: {e.Message}";
+			label!.TextColor = UIColor.Red;
+		}
 	}
 }

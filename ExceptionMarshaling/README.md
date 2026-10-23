@@ -13,7 +13,7 @@ urlFragment: exceptionmarshaling
 
 This sample demonstrates exception marshaling.
 
-See Scenarios.md detailed descriptions of a few key scenarios.
+See [SCENARIOS.md](SCENARIOS.md) for detailed descriptions of a few key scenarios.
 
 The sample assumes knowledge of how exception marshaling works, which is
 documented here: [Exception Marshaling][1]
