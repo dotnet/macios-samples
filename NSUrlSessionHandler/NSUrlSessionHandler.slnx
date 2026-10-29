@@ -1,0 +1,12 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="iOS/iOS.csproj" />
+  <Project Path="MacCatalyst/MacCatalyst.csproj" />
+  <Project Path="macOS/macOS.csproj" />
+  <Project Path="Server/Server.csproj" />
+  <Project Path="tvOS/tvOS.csproj" />
+</Solution>
