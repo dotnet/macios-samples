@@ -8,7 +8,6 @@ products:
 - dotnet-macios
 urlFragment: nsurlsessionhandler
 ---
-<!-- Copyright (c) Microsoft Corporation. Licensed under the MIT License. -->
 
 # NSUrlSessionHandler
 
@@ -31,9 +30,7 @@ Screenshots: [iOS](Screenshots/iOS.png), [tvOS](Screenshots/tvOS.png),
 
 Use a Mac with the .NET 10 SDK, the Apple workloads for the platforms you want to
 run, and the matching Xcode version. Install workloads with `dotnet workload install
-ios tvos macos maccatalyst` if they are not already available. An Apple Silicon Mac
-can use the ARM64 simulator runtime identifiers below; use `iossimulator-x64`,
-`tvossimulator-x64`, `maccatalyst-x64`, and `osx-x64` on an Intel Mac.
+ios tvos macos maccatalyst` if they are not already available.
 
 Use current Apple workload servicing releases for the latest behavior. Merely
 targeting `net10.0` does not guarantee the newer handler implementation:
@@ -84,14 +81,12 @@ sample's certificate material; there is no global trust setting to undo.
 
 ## Build and run an app
 
-Open `NSUrlSessionHandler.sln` in an IDE, select a platform project and device, and
-run. Alternatively:
+Open `NSUrlSessionHandler.slnx` in an IDE, select a platform project and device, and
+run. Alternatively, change to the corresponding platform directory (`iOS`,
+`tvOS`, `MacCatalyst`, or `macOS`) and run:
 
 ```sh
-dotnet build iOS/iOS.csproj -p:RuntimeIdentifier=iossimulator-arm64
-dotnet build tvOS/tvOS.csproj -p:RuntimeIdentifier=tvossimulator-arm64
-dotnet build MacCatalyst/MacCatalyst.csproj -p:RuntimeIdentifier=maccatalyst-arm64
-dotnet build macOS/macOS.csproj -p:RuntimeIdentifier=osx-arm64
+dotnet run
 ```
 
 Run the resulting app and select **Run local networking scenarios**. The tvOS
@@ -102,7 +97,8 @@ handler so that sessions with different security policies are not reused.
 The macOS app also supports a console run without opening its window:
 
 ```sh
-macOS/bin/Debug/net10.0-macos/osx-arm64/NSUrlSessionHandler.app/Contents/MacOS/macOS --run-tests
+cd macOS
+dotnet run -- --run-tests
 ```
 
 The exit code is nonzero for `FAIL`. Add `--require-current-behavior` to also fail
