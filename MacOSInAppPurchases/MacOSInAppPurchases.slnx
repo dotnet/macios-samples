@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/App/">
+    <Project Path="App/PurchaseSample.csproj" />
+  </Folder>
+  <Folder Name="/Binding/">
+    <Project Path="Binding/StoreBridge.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/ReceiptTests.csproj" />
+  </Folder>
+  <Folder Name="/Tests/Native/">
+    <Project Path="Tests/Native/NativeSmoke.csproj" />
+  </Folder>
+  <Project Path="ReceiptValidation/ReceiptValidation.csproj" />
+</Solution>
