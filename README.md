@@ -18,6 +18,8 @@ AlternateAppIcons requires iOS/tvOS 15.0 or later, and UserNotifications
 requires iOS 15.0 or later.
 ExceptionMarshaling requires iOS 15.0 or macOS 14.0 or later. ComposerIcons
 requires version 26.0 or later of its target platform.
+The [Bonjour Chat](BonjourChat/README.md) Network framework sample requires
+macOS 14.0 or later.
 
 ## Galleries
 
