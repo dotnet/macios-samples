@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BackgroundAssetsApp/BackgroundAssetsApp.csproj" />
+  <Project Path="DownloaderExtension/DownloaderExtension.csproj" />
+</Solution>
