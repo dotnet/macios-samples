@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net12.0-macos</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
+    <IsAppExtension>true</IsAppExtension>
+    <IsXPCService>true</IsXPCService>
+    <ApplicationId>com.microsoft.samples.xpcservice.echo</ApplicationId>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <Registrar>static</Registrar>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Contracts/Contracts.csproj" />
+  </ItemGroup>
+</Project>

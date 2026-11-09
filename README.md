@@ -19,6 +19,9 @@ requires iOS 15.0 or later.
 ExceptionMarshaling requires iOS 15.0 or macOS 14.0 or later. ComposerIcons
 requires version 26.0 or later of its target platform.
 
+XpcService requires .NET 12 and a macOS workload with bundled XPC service support;
+see its [README](XpcService/README.md) for the required fixes.
+
 ## Galleries
 
 We love samples! Application samples show off our platform and provide a great way for people to learn our stuff. And we even promote them as a first-class feature of the docs site. You can find the sample galleries here:
