@@ -10,7 +10,7 @@ namespace BackgroundAssetsSample;
 public class DownloadViewController : UIViewController {
 	readonly UILabel status = new UILabel {
 		Lines = 0,
-		Text = "Configure HTTPS hosting and the shared app group as described in the README, then download the Greeting asset pack.",
+		Text = "Set up HTTPS hosting and the shared app group (see the README), then tap Download Greeting.",
 	};
 	readonly UIButton download = UIButton.FromType (UIButtonType.System);
 
@@ -50,7 +50,7 @@ public class DownloadViewController : UIViewController {
 			if (error is not null)
 				throw new NSErrorException (error);
 			if (data is null)
-				throw new InvalidOperationException ("The downloaded Greeting file is unavailable.");
+				throw new InvalidOperationException ("Couldn't read the downloaded Greeting file.");
 			using var text = NSString.FromData (data, NSStringEncoding.UTF8)
 				?? throw new InvalidOperationException ("Greeting.txt is not UTF-8 text.");
 			status.Text = text.ToString ();
