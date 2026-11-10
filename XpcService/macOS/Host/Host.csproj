@@ -6,7 +6,7 @@
     <ApplicationId>com.microsoft.samples.xpcservice</ApplicationId>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
-    <Registrar>static</Registrar>
+    <Registrar>trimmable-static</Registrar>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../Contracts/Contracts.csproj" />

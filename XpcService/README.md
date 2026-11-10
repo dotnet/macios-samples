@@ -52,10 +52,10 @@ reported to standard error and return a nonzero exit code.
 `Contracts` is a binding project, even though no native library is needed. The
 binding generator creates the Objective-C protocol, typed remote proxy, and
 reply-block marshalling code from `ApiDefinition.cs`. Both executables reference
-this same contract. Both use `Registrar=static` so the XPC subsystem can read the
-reply block's Objective-C type signature.
-The reply uses a named delegate so the static registrar preserves its concrete
-string parameter when generating the native protocol.
+this same contract. Both use `Registrar=trimmable-static` so the XPC subsystem can
+read the reply block's Objective-C type signature. The reply uses a named
+delegate so the trimmable static registrar preserves its concrete string
+parameter when generating the native protocol.
 
 `EchoService` sets `OutputType=Exe`, `IsAppExtension=true`, and `IsXPCService=true`.
 Its manifest declares `CFBundlePackageType=XPC!` and
