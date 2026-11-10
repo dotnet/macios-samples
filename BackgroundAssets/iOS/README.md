@@ -6,7 +6,7 @@ languages:
 - csharp
 products:
 - dotnet-macios
-urlFragment: macios-backgroundassets-ios
+urlFragment: backgroundassets-ios
 ---
 
 # Background Assets
@@ -16,6 +16,11 @@ app. The extension implements `IBAManagedDownloaderExtension`; the system manage
 downloads and calls `ShouldDownload` to let the extension filter asset packs. The
 app downloads the `Greeting` pack and displays `Assets/Greeting.txt`.
 
+![Initial setup screen](Screenshots/Setup.png)
+
+The initial screen prompts you to configure hosting and the app group. It doesn't
+show a completed download.
+
 The extension's `Info.plist` declares `EXAppExtensionAttributes` with
 `EXExtensionPointIdentifier` set to `com.apple.background-asset-downloader-extension`
 and `EXPrincipalClass` matching `[Register ("BackgroundDownloadHandler")]`. It
@@ -24,6 +29,15 @@ then calls `NSExtensionMain`, the same entry point Xcode uses for Objective-C
 ExtensionKit extensions. You don't need a Swift `@main` implementation.
 
 ## Requirements
+
+**SDK prerequisite:** No currently shipped .NET 10 SDK can package this sample
+correctly. It requires a .NET 10 backport of the ExtensionKit placement and
+validation change for
+[dotnet/macios#19861](https://github.com/dotnet/macios/issues/19861) (currently
+local commit `2d13d0ee2466`).
+That change is still local, and no .NET 10 backport exists yet. The sample targets
+.NET 10 to match this repository; don't treat it as runnable with the public
+workload until that prerequisite is available.
 
 - .NET 10 with an iOS workload that supports iOS 27, and the Xcode version that
   workload requires.
@@ -62,7 +76,7 @@ For local development, follow Apple's
 instructions to create and trust an HTTPS certificate. Then run:
 
 ```sh
-xcrun ba-serve --host localhost Greeting.aar
+xcrun ba-serve --host localhost --port 56969 Greeting.aar
 ```
 
 Choose the server certificate when prompted. On the test device, configure the
