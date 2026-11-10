@@ -30,22 +30,16 @@ ExtensionKit extensions. You don't need a Swift `@main` implementation.
 
 ## Requirements
 
-**SDK prerequisite:** No currently shipped .NET 10 SDK can package this sample
-correctly. It requires a .NET 10 backport of the ExtensionKit placement and
-validation change for
-[dotnet/macios#19861](https://github.com/dotnet/macios/issues/19861) (currently
-local commit `2d13d0ee2466`).
-That change is still local, and no .NET 10 backport exists yet. The sample targets
-.NET 10 to match this repository; don't treat it as runnable with the public
-workload until that prerequisite is available.
+**SDK prerequisite:** This sample requires a .NET 10 backport of the ExtensionKit
+placement and validation fix for
+[dotnet/macios#19861](https://github.com/dotnet/macios/issues/19861).
+No .NET 10 backport exists yet, so the sample doesn't work with the public
+workload. The sample targets .NET 10 to match this repository.
 
 - .NET 10 with an iOS workload that supports iOS 27, and the Xcode version that
   workload requires.
 - iOS 27 or later. The downloader protocol itself requires only iOS 26, but the
   app uses the newer `GetManifestAsync` API.
-- A .NET iOS SDK that puts `EXAppExtensionAttributes` extensions in the app's
-  `Extensions` directory and doesn't require an `NSExtension` dictionary.
-  Older SDKs can build the extension by itself, but not the app that contains it.
 - An Apple Developer account and provisioning profiles with the same app group
   for both targets when running on a device.
 - HTTPS hosting with a certificate trusted by the test device. Do not disable
@@ -122,7 +116,8 @@ after tapping **Download Greeting** doesn't prove that the extension ran.
 Check the extension's log as well. The app shows errors on screen and also writes
 them to its log.
 
-The downloader matches the `ios-background-download-extension` template. Do not
-implement the inherited `IBADownloaderExtension` download callbacks: the system
-implements those for managed asset packs, as described in Apple's
+The downloader matches the `ios-background-download-extension` template. The
+system provides the inherited `IBADownloaderExtension` methods for managed asset
+packs. Don't implement them, except for `DidReceiveChallenge` if you need to
+handle authentication challenges, as described in Apple's
 [Objective-C downloader documentation](https://developer.apple.com/documentation/backgroundassets/bamanageddownloaderextension).
