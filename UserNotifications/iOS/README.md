@@ -36,7 +36,7 @@ extension activation. To verify the service extension's `[modified]` title
 and the content extension's expanded interface, use the payloads below on a
 provisioned device.
 
-See the [User Notifications](https://learn.microsoft.com/en-us/dotnet/ios/app-fundamentals/user-notifications/user-notifications) article for more information.
+See the [User Notifications](https://learn.microsoft.com/en-us/dotnet/ios/app-fundamentals/user-notifications) article for more information.
 
 ## Local notifications
 
@@ -70,7 +70,7 @@ Console), with the `mutable-content` key in the payload set to `1` makes the
 iOS device deliver the notification to any Notification Service extensions,
 which can modify the payload:
 
-[![Modified remote notification received](ModifiedRemoteNotification.png)](ModifiedRemoteNotification.png)
+[![Modified remote notification received](RemoteNotificationModified.png)](RemoteNotificationModified.png)
 
 Example payload:
 
@@ -87,14 +87,16 @@ Example payload:
 ```
 
 
-## Modified remote notification using a Notification Service extension:
+## Expanded remote notification using a Notification Content extension:
 
 If the user long-presses a notification, iOS can display an extended interface
-for the notification if the app contains a Content Service extension:
+for the notification if the app contains a Notification Content extension:
 
 [![Customized expanded remote notification](CustomizedExpandedRemoteNotification.png)](CustomizedExpandedRemoteNotification.png)
 
-This requires the `category` key in the payload to be set to a category listed in the `UNNotificationExtensionCategory` entry in the Notification Service extension's `Info.plist`.
+The payload's `category` must match a category in the
+`UNNotificationExtensionCategory` entry in the Notification Content
+extension's `Info.plist`.
 
 Example payload:
 
@@ -112,7 +114,7 @@ Example payload:
 
 ## Both extensions at the same time
 
-Both a Notification Service extension and a Content Service extension can process a notification:
+Both a Notification Service extension and a Notification Content extension can process a notification:
 
 [![Customized expanded modified remote notification](CustomizedExpandedModifiedRemoteNotification.png)](CustomizedExpandedModifiedRemoteNotification.png)
 
