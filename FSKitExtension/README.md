@@ -126,10 +126,19 @@ codesign -d --entitlements - HelloFS/bin/Debug/net12.0-macos/osx-arm64/HelloFS.a
 
 * `mount` fails with `Module ... is disabled!`: enable the extension in System
   Settings (step 2 above).
+* Every time you rebuild the extension, macOS disables it again. After each
+  rebuild, launch the app again and re-enable the extension in System Settings.
+* After rebuilding, macOS may keep running the previous version of the extension.
+  Quit it with `killall HelloFSExtension` before mounting again.
+* `mount` fails with `com.apple.extensionKit.errorDomain error 2` and
+  `File system named HelloFS not found` right after switching to a build in a
+  different location (for example from Debug to Release): macOS is still
+  unloading the old extension. Try the `mount` command again.
 * `mount` fails with an error about signing or entitlements: check that the
   extension is signed with a provisioning profile that has the FSKit Module
   capability (see [Signing](#signing)).
-* After rebuilding, macOS may keep running the previous version of the extension.
-  Quit it with `killall HelloFSExtension` before mounting again.
+* `umount` fails with `Resource busy`: something (such as Spotlight or Finder)
+  is still looking at the volume. Wait a moment and try again, or use
+  `diskutil unmount /tmp/hellofs`.
 * Use `pluginkit -m -v -i <extension bundle identifier>` to check that macOS
   found the extension, and Console.app to see its log messages.
