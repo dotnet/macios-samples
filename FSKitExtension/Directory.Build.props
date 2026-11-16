@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+	<PropertyGroup>
+		<TargetFramework>net12.0-macos</TargetFramework>
+		<SupportedOSPlatformVersion>15.4</SupportedOSPlatformVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- The bundle identifier of the container app. Change this to an identifier you own. -->
+		<HelloFSApplicationId Condition="'$(HelloFSApplicationId)' == ''">com.companyname.hellofs</HelloFSApplicationId>
+		<!-- The bundle identifier of the file system extension. It must start with the container app's bundle identifier. -->
+		<HelloFSExtensionApplicationId Condition="'$(HelloFSExtensionApplicationId)' == ''">$(HelloFSApplicationId).fsmodule</HelloFSExtensionApplicationId>
+	</PropertyGroup>
+</Project>

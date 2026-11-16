@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <ApplicationTitle>HelloFS</ApplicationTitle>
+    <ApplicationId>$(HelloFSApplicationId)</ApplicationId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../HelloFSExtension/HelloFSExtension.csproj">
+      <IsAppExtension>true</IsAppExtension>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
