@@ -1,0 +1,19 @@
+{
+  "assetPackID": "Greeting",
+  "downloadPolicy": {
+    "prefetch": {
+      "installationEventTypes": [
+        "firstInstallation",
+        "subsequentUpdate"
+      ]
+    }
+  },
+  "fileSelectors": [
+    {
+      "file": "Assets/Greeting.txt"
+    }
+  ],
+  "platforms": [
+    "iOS"
+  ]
+}
