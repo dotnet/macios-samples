@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <IsAppExtension>true</IsAppExtension>
+    <ApplicationId>$(HelloFSExtensionApplicationId)</ApplicationId>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <!-- FSKit extensions must be signed with a provisioning profile that has the FSKit Module capability. -->
+    <CodesignProvision>$(HelloFSProvisioningProfile)</CodesignProvision>
+  </PropertyGroup>
+</Project>

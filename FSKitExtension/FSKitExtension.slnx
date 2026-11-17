@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="HelloFS/HelloFS.csproj" />
+  <Project Path="HelloFSExtension/HelloFSExtension.csproj" />
+</Solution>
