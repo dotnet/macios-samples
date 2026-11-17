@@ -97,10 +97,16 @@ codesign -d --entitlements - HelloFS/bin/Debug/net12.0-macos/osx-arm64/HelloFS.a
 
 ## Run
 
-1. Launch the app once, so macOS registers the extension:
+1. Run the app once, so macOS registers the extension. `dotnet run` builds the
+   app first, so pass the same properties as when building (or set them in
+   `Directory.Build.props`):
 
     ```shell
-    open HelloFS/bin/Debug/net12.0-macos/osx-arm64/HelloFS.app
+    dotnet run --project HelloFS/HelloFS.csproj \
+        -p:HelloFSApplicationId=com.example.hellofs \
+        -p:HelloFSExtensionApplicationId=com.example.hellofs.fsmodule \
+        -p:CodesignKey="Apple Development: Your Name (XXXXXXXXXX)" \
+        -p:HelloFSProvisioningProfile="HelloFS Profile"
     ```
 
 2. Enable the extension in System Settings → General → Login Items & Extensions →
@@ -127,7 +133,7 @@ codesign -d --entitlements - HelloFS/bin/Debug/net12.0-macos/osx-arm64/HelloFS.a
 * `mount` fails with `Module ... is disabled!`: enable the extension in System
   Settings (step 2 above).
 * Every time you rebuild the extension, macOS disables it again. After each
-  rebuild, launch the app again and re-enable the extension in System Settings.
+  rebuild, run the app again and re-enable the extension in System Settings.
 * After rebuilding, macOS may keep running the previous version of the extension.
   Quit it with `killall HelloFSExtension` before mounting again.
 * `mount` fails with `com.apple.extensionKit.errorDomain error 2` and
