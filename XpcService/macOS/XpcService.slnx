@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Contracts/Contracts.csproj" />
+  <Project Path="EchoService/EchoService.csproj" />
+  <Project Path="Host/Host.csproj" />
+</Solution>
