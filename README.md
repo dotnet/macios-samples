@@ -19,6 +19,15 @@ requires iOS 15.0 or later.
 ExceptionMarshaling requires iOS 15.0 or macOS 14.0 or later. ComposerIcons
 requires version 26.0 or later of its target platform.
 
+## In-app purchases on macOS
+
+[MacOSInAppPurchases](MacOSInAppPurchases/README.md) demonstrates a native AppKit
+app with separate StoreKit 1 and StoreKit 2 modes for one non-consumable.
+It includes a [purchase guide](MacOSInAppPurchases/GUIDE.md), local receipt
+validation, and a sample-local Swift framework and C# binding. It requires
+macOS 12 or later; real sandbox purchases also require App Store Connect and
+signing configuration.
+
 ## Galleries
 
 We love samples! Application samples show off our platform and provide a great way for people to learn our stuff. And we even promote them as a first-class feature of the docs site. You can find the sample galleries here:
